@@ -4,7 +4,8 @@
   "description": "Realtime Drawing Game built with SocketIO, Gulp and Node",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon --exec babel-node src/server.js --delay 2"
+    "dev:server": "nodemon --exec babel-node src/server.js --ignore assets/ --ignore src/static",
+    "dev:assets": "gulp"
   },
   "author": "gzero1728",
   "license": "ISC",
@@ -18,8 +19,17 @@
     "@babel/core": "^7.12.3",
     "@babel/node": "^7.12.6",
     "@babel/preset-env": "^7.12.1",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "del": "^6.0.0",
     "express": "^4.17.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-csso": "^4.0.1",
+    "gulp-sass": "^4.1.0",
     "morgan": "^1.10.0",
+    "node-sass": "^5.0.0",
     "pug": "^3.0.0",
     "socket.io": "^3.0.1"
   }

@@ -1,3 +1,5 @@
+import handleMessageNofit from "./chat.js"
+
 const socket = io("/");
 
 function sendMessage(message) {
@@ -7,11 +9,6 @@ function sendMessage(message) {
 
 function setNickname(nickname) {
     socket.emit("setNickname", { nickname });
-}
-
-function handleMessageNofit(data) {
-    const { message, nickname } = data;
-    console.log(`${nickname}: ${message}`);
 }
 
 socket.on("messageNotif", handleMessageNofit)
