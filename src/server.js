@@ -19,8 +19,14 @@ const server = app.listen(PORT, handleListening);
 // 변수 server를 만들어서 soketIO로 가져옴 
 const io = socketIO(server);
 
-let sockets = [];
-
-io.on("connection", socket => sockets.push(socket.id));
-
-setInterval(() => console.log(sockets), 1000);
+io.on("connection", socket => {
+    socket.on("newMessage", ({ message }) => {
+        socket.broadcast.emit("messageNotif", {
+            message,
+            nickname: socket.nickname || "Anon"
+        });
+    });
+    socket.on("setNickname", ({ nickname }) => {
+        socket.nickname = nickname;
+    });
+});
