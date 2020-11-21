@@ -20,7 +20,9 @@ const handleListening = () => console.log(`✅ Server running: http://localhost:
 
 const server = app.listen(PORT, handleListening);
 
-// 변수 server를 만들어서 soketIO로 가져옴 
+// const io: full 서버라고 생각하면 됨, 연결된 모든 클라이언트에게 메시지를 보냄
+// 변수 server를 만들어서 soketIO로 가져옴
 const io = socketIO(server);
 
-io.on("connection", socket => socketController(socket));
+// socket은 htpp req 객체와 같음
+io.on("connection", socket => socketController(socket, io));
