@@ -1,4 +1,5 @@
 // 백엔드part: 서버와 클라이언트 사이 컨트롤 
+
 import events from "./events.js";
 import { chooseWord } from "./word.js";
 
@@ -10,7 +11,9 @@ let word = null;
 let leader = null;
 let timeout = null;
 
+
 const chooseLeader = () => sockets[Math.floor(Math.random() * sockets.length)]
+
 
 const socketController = (socket, io) => {
     // broadcast 는 자신을 제외한 클라이언트에게 정보를 전달 
@@ -29,7 +32,7 @@ const socketController = (socket, io) => {
                 superBroadcast(events.gameStarting);
                 setTimeout(() => {
                     // 게임 시작을 모든 유저에게 알림 
-                    superBroadcast(events.gameStarted)
+                    superBroadcast(events.gameStarted);
                     // 리더에게만(io.to) 무작위로 선택되어진 단어(word)를 알림(emit)
                     io.to(leader.id).emit(events.leaderNotif, { word });
                     timeout = setTimeout(endGame, 30000);
